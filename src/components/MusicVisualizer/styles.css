@@ -1,5 +1,7 @@
-/* 黑胶片的纹理 */
 .ui-film-container {
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
+
+  /* 黑胶片的纹理 */
   background: repeating-radial-gradient(
       circle at center,
       transparent 0,

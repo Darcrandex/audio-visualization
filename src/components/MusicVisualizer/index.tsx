@@ -2,7 +2,7 @@ import defImgUrl from '@/assets/images/default-img.png'
 import { cls } from '@/utils/cls'
 import { PauseCircleFilled, PlayCircleFilled } from '@ant-design/icons'
 import { Button, Drawer, Form, Input } from 'antd'
-import { delay, round } from 'es-toolkit'
+import { clamp, delay, round } from 'es-toolkit'
 import { useEffect, useRef, useState } from 'react'
 
 import './styles.css'
@@ -84,6 +84,31 @@ export default function MusicVisualizer() {
 
     await delay(100)
     setCoverClassName('ui-film-cover ui-film-cover--paused')
+  }
+
+  const progressRef = useRef<HTMLDivElement>(null)
+  const [sliderLeft, setSliderLeft] = useState(0)
+
+  const onProgessHover = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!progressRef.current) {
+      return
+    }
+
+    const { left = 0, width = 0 } = progressRef.current?.getBoundingClientRect() || {}
+    const percent = round(clamp((e.clientX - left) / width, 0, 1), 2)
+    setSliderLeft(percent * width)
+  }
+
+  const seekToByPercent = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!audioRef.current || !audioRef.current.src) {
+      return
+    }
+
+    if (visualizerRef.current) {
+      const { left = 0, width = 0 } = progressRef.current?.getBoundingClientRect() || {}
+      const percent = round(clamp((e.clientX - left) / width, 0, 1), 2)
+      visualizerRef.current.seekTo(percent * audioDuration)
+    }
   }
 
   return (
@@ -173,8 +198,18 @@ export default function MusicVisualizer() {
 
           <footer className='relative mt-6 flex w-96 items-center'>
             <span className='w-16 text-xs'>{formatTime(currentTime)}</span>
-            <div className='relative h-1 w-full rounded-full bg-white/25'>
-              <i style={{ width: timeProgress }} className='absolute top-0 left-0 h-1 w-1 rounded-full bg-white'></i>
+            <div
+              ref={progressRef}
+              className='group relative h-3 w-full'
+              onMouseMove={onProgessHover}
+              onClick={seekToByPercent}
+            >
+              <i className='absolute top-1 left-0 h-1 w-full rounded-full bg-white/25'></i>
+              <i style={{ width: timeProgress }} className='absolute top-1 left-0 h-1 rounded-full bg-white'></i>
+              <i
+                className='pointer-events-none absolute top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-white opacity-0 transition-opacity group-hover:opacity-100'
+                style={{ left: sliderLeft }}
+              ></i>
             </div>
             <span className='w-16 text-right text-xs'>{formatTime(audioDuration)}</span>
           </footer>

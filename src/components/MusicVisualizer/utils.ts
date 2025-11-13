@@ -63,10 +63,29 @@ export class AudioVisualizer {
     this.pause()
     this.audioElement.currentTime = 0
 
-    if (this.canvasCtx) {
-      const canvas = this.canvasCtx.canvas
-      const { width, height } = canvas
-      this.canvasCtx.clearRect(0, 0, width, height)
+    const t = setTimeout(() => {
+      if (this.canvasCtx) {
+        const canvas = this.canvasCtx.canvas
+        const { width, height } = canvas
+        this.canvasCtx.clearRect(0, 0, width, height)
+      }
+      clearTimeout(t)
+    }, 200)
+  }
+
+  seekTo(timeInSeconds: number) {
+    if (!this.audioElement.duration) return // 确保音频已加载
+    const duration = this.audioElement.duration
+
+    // 限制范围，避免超出总时长
+    const targetTime = Math.min(Math.max(timeInSeconds, 0), duration)
+
+    // 更新播放进度
+    this.audioElement.currentTime = targetTime
+
+    // 如果正在播放，保持动画刷新
+    if (this.isPlaying) {
+      this.draw()
     }
   }
 

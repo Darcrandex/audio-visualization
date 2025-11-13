@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
       createHtmlPlugin({
         inject: {
           data: {
-            TITLE: 'vite-react-ts-template',
+            TITLE: 'Audio Visualization',
             BUILD_TIME: new Date().toLocaleString(),
           },
         },
