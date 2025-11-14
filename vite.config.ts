@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
       createHtmlPlugin({
         inject: {
           data: {
-            TITLE: 'Audio Visualization',
+            TITLE: 'Sound Vizor', // 暂定名称
             BUILD_TIME: new Date().toLocaleString(),
           },
         },
