@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'Silent Forest';
+  src: url('@/assets/fonts/Silent-Forest.ttf') format('truetype');
+}
+
+.font-silent-forest {
+  font-family: 'Silent Forest', sans-serif;
+}
