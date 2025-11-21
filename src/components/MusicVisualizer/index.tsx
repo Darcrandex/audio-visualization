@@ -158,7 +158,7 @@ export default function MusicVisualizer() {
           <Form.Item label='描述'>
             <Input.TextArea
               rows={3}
-              maxLength={100}
+              maxLength={200}
               showCount
               allowClear
               value={description}
@@ -176,8 +176,8 @@ export default function MusicVisualizer() {
             className='pointer-events-none absolute top-0 left-0 h-full w-full scale-120 object-cover blur-lg brightness-75'
           />
 
-          <h1 className='relative mx-6 text-2xl font-bold'>{title || '标题'}</h1>
-          <p className='relative mx-6 mt-6 mb-12'>{description || '描述'}</p>
+          <h1 className='relative mx-6 text-center text-2xl font-bold'>{title || '标题'}</h1>
+          <p className='relative mx-6 mt-6 mb-12 text-center'>{description || '描述'}</p>
 
           <div className='ui-film-container group relative flex h-64 w-64 items-center justify-center overflow-hidden rounded-full border-2 border-black'>
             <img
