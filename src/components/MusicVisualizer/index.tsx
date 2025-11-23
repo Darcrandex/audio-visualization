@@ -115,7 +115,7 @@ export default function MusicVisualizer() {
     <>
       <nav className='fixed top-4 right-4'>
         <Button type='primary' size='large' onClick={() => setOpen(true)}>
-          配置
+          Settings
         </Button>
         <audio
           ref={audioRef}
@@ -135,27 +135,27 @@ export default function MusicVisualizer() {
         />
       </nav>
 
-      <Drawer title='配置' open={open} width={560} onClose={() => setOpen(false)}>
+      <Drawer title='Settings' open={open} width={560} onClose={() => setOpen(false)}>
         <Form layout='vertical'>
-          <Form.Item label='音频文件' required>
+          <Form.Item label='Audio' required>
             <input ref={audioInputRef} type='file' accept='audio/*' onChange={onSelectAudio} hidden />
             <Button disabled={isPlaying} onClick={() => audioInputRef.current?.click()}>
-              点击上传音频文件
+              Upload Audio File
             </Button>
-            <p className='mt-2 text-sm text-gray-500'>当前文件：{audioFilename || '未选择'}</p>
+            <p className='mt-2 text-sm text-gray-500'>Current File: {audioFilename || 'none'}</p>
           </Form.Item>
 
-          <Form.Item label='图片文件'>
+          <Form.Item label='Background Image'>
             <input ref={imageInputRef} type='file' accept='image/*' hidden onChange={onSelectImage} />
-            <Button onClick={() => imageInputRef.current?.click()}>点击上传图片文件</Button>
-            <p className='mt-2 text-sm text-gray-500'>当前文件：{imageFilename || '未选择'}</p>
+            <Button onClick={() => imageInputRef.current?.click()}>Upload Image File</Button>
+            <p className='mt-2 text-sm text-gray-500'>Current File: {imageFilename || 'none'}</p>
           </Form.Item>
 
-          <Form.Item label='标题'>
+          <Form.Item label='Title'>
             <Input value={title} maxLength={30} allowClear onChange={(e) => setTitle(e.target.value)} />
           </Form.Item>
 
-          <Form.Item label='描述'>
+          <Form.Item label='Description'>
             <Input.TextArea
               rows={3}
               maxLength={200}
@@ -176,8 +176,8 @@ export default function MusicVisualizer() {
             className='pointer-events-none absolute top-0 left-0 h-full w-full scale-120 object-cover blur-lg brightness-75'
           />
 
-          <h1 className='relative mx-6 text-center text-2xl font-bold'>{title || '标题'}</h1>
-          <p className='relative mx-6 mt-6 mb-12 text-center'>{description || '描述'}</p>
+          <h1 className='relative mx-6 text-center text-2xl font-bold'>{title || 'Title'}</h1>
+          <p className='relative mx-6 mt-6 mb-12 text-center'>{description || 'Description'}</p>
 
           <div className='ui-film-container group relative flex h-64 w-64 items-center justify-center overflow-hidden rounded-full border-2 border-black'>
             <img
