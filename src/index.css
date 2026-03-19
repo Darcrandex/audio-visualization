@@ -8,3 +8,23 @@
 .font-silent-forest {
   font-family: 'Silent Forest', sans-serif;
 }
+
+/* KaushanScript-Regular.ttf */
+@font-face {
+  font-family: 'Kaushan Script';
+  src: url('@/assets/fonts/KaushanScript-Regular.ttf') format('truetype');
+}
+
+.font-kaushan-script {
+  font-family: 'Kaushan Script', cursive;
+}
+
+/* LibreBaskerville-Italic-VariableFont_wght */
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('@/assets/fonts/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
+}
+
+.font-libre-baskerville {
+  font-family: 'Libre Baskerville', serif;
+}
