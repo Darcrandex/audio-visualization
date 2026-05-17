@@ -169,7 +169,7 @@ export default function MusicVisualizer() {
       </Drawer>
 
       <section className='flex h-screen items-center justify-center bg-black'>
-        <main className='relative flex aspect-[calc(9/16)] w-2xl flex-col items-center justify-center overflow-hidden bg-gray-300 text-white'>
+        <main className='relative flex aspect-[0.5625] w-2xl flex-col items-center justify-center overflow-hidden bg-gray-300 text-white'>
           <img
             src={backgroundImage || defImgUrl}
             alt=''
