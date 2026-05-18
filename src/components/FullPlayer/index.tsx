@@ -2,11 +2,14 @@ import { Button, Drawer, Form, Input } from 'antd'
 import { clamp, round } from 'es-toolkit'
 import { Pause, Play, Settings2, Square } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { AudioVisualizer, formatTime } from './utils'
 import LyricsView from '../LyricsView'
 import './styles.css'
+import { AudioVisualizer, formatTime } from './utils'
 
 const defaultBg = 'https://picsum.photos/1920/1080?blur=10'
+const defaultLrc = `[00:12.40]When I was young, I'd listen to the radio
+[00:18.10]Waitin' for my favorite songs
+`
 
 export default function FullPlayer() {
   // 配置表单
@@ -141,11 +144,18 @@ export default function FullPlayer() {
           </Form.Item>
 
           <Form.Item label='Title'>
-            <Input value={title} maxLength={100} allowClear onChange={(e) => setTitle(e.target.value)} />
+            <Input
+              placeholder='Yesterday Once More'
+              value={title}
+              maxLength={100}
+              allowClear
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </Form.Item>
 
           <Form.Item label='Subtitle'>
             <Input.TextArea
+              placeholder='Unforgettable memories'
               rows={3}
               maxLength={500}
               showCount
@@ -156,7 +166,15 @@ export default function FullPlayer() {
           </Form.Item>
 
           <Form.Item label='Lyrics'>
-            <Input.TextArea rows={10} showCount allowClear value={lrc} onChange={(e) => setLrc(e.target.value)} />
+            <Input.TextArea
+              placeholder={defaultLrc}
+              rows={10}
+              maxLength={2000}
+              showCount
+              allowClear
+              value={lrc}
+              onChange={(e) => setLrc(e.target.value)}
+            />
           </Form.Item>
         </Form>
       </Drawer>
