@@ -28,3 +28,9 @@
 .font-libre-baskerville {
   font-family: 'Libre Baskerville', serif;
 }
+
+
+/* 文字阴影 */
+.ui-text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
