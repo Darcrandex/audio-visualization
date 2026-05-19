@@ -35,7 +35,14 @@ function parseLrc(lrc: string): LyricLine[] {
 }
 
 export default function LyricsView({ lrc = '', currentTime = 0 }: Props) {
-  const lyrics = useMemo(() => parseLrc(lrc), [lrc])
+  const lyrics = useMemo(() => {
+    const arr = parseLrc(lrc)
+
+    // 补充空行，避免第一行歌词过早高亮
+    const hasEmptyHead = arr[0]?.text.trim() === '' && arr[0].time === 0
+    return hasEmptyHead ? arr : [{ time: 0, text: '' }, ...arr]
+  }, [lrc])
+
   const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
@@ -101,7 +108,7 @@ export default function LyricsView({ lrc = '', currentTime = 0 }: Props) {
                   active ? 'ui-text-shadow text-2xl font-bold text-white' : 'text-xl font-medium text-zinc-50',
                 )}
               >
-                {line.text}
+                <span className={cls(line.text.trim() ? 'opacity-100' : 'opacity-0')}>{line.text || 'is empty'}</span>
               </motion.div>
             )
           })}
