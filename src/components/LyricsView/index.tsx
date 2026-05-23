@@ -105,7 +105,7 @@ export default function LyricsView({ lrc = '', currentTime = 0 }: Props) {
                 }}
                 className={cls(
                   'max-w-[90%] origin-center px-4 text-center leading-relaxed wrap-break-word whitespace-pre-wrap will-change-transform select-none',
-                  active ? 'ui-text-shadow text-2xl font-bold text-white' : 'text-xl font-medium text-zinc-50',
+                  active ? 'ui-text-shadow text-3xl font-bold text-white' : 'text-2xl font-medium text-zinc-50',
                 )}
               >
                 <span className={cls(line.text.trim() ? 'opacity-100' : 'opacity-0')}>{line.text || 'is empty'}</span>
