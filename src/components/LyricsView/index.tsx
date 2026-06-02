@@ -63,13 +63,13 @@ export default function LyricsView({ lrc = '', currentTime = 0 }: Props) {
     }
   }, [currentTime, lyrics])
 
-  /**
-   * 最多显示 5 行
-   */
-  const visibleLyrics = useMemo(
-    () => lyrics.slice(Math.max(activeIndex - 2, 0), Math.min(activeIndex + 3, lyrics.length)),
-    [activeIndex, lyrics],
-  )
+  const visibleLyrics = useMemo(() => {
+    const maxVisible = 7 // 最多显示的歌词行数 2n+1
+    return lyrics.slice(
+      Math.max(activeIndex - Math.floor(maxVisible / 2), 0),
+      Math.min(activeIndex + Math.floor(maxVisible / 2) + 1, lyrics.length),
+    )
+  }, [activeIndex, lyrics])
 
   return (
     <div className='relative flex h-80 items-center justify-center overflow-hidden'>

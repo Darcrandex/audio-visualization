@@ -187,10 +187,10 @@ export default function FullPlayer() {
         />
 
         <main className='relative my-auto px-4 text-white'>
-          <h1 className='ui-text-shadow font-kaushan-script relative mx-auto w-3xl text-center text-4xl font-bold'>
+          <h1 className='ui-text-shadow font-kaushan-script relative mx-auto w-3xl max-w-full text-center text-4xl font-extrabold'>
             {title || 'Title'}
           </h1>
-          <p className='ui-text-shadow font-libre-baskerville relative mx-auto mt-6 w-3xl text-center text-3xl italic'>
+          <p className='ui-text-shadow font-libre-baskerville relative mx-auto mt-6 w-3xl max-w-full text-center text-3xl italic'>
             {subtitle || 'Subtitle'}
           </p>
         </main>
