@@ -6,10 +6,18 @@ import LyricsView from '../LyricsView'
 import './styles.css'
 import { AudioVisualizer, formatTime } from './utils'
 
+import { useAtom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
+
 const defaultBg = 'https://picsum.photos/1920/1080?blur=10'
 const defaultLrc = `[00:12.40]When I was young, I'd listen to the radio
 [00:18.10]Waitin' for my favorite songs
 `
+
+// 缓存表单数目
+const songTitleAtom = atomWithStorage('song-title', '')
+const songSubtitleAtom = atomWithStorage('song-subtitle', '')
+const songLrcAtom = atomWithStorage('song-lrc', '')
 
 export default function FullPlayer() {
   // 配置表单
@@ -19,10 +27,10 @@ export default function FullPlayer() {
   const imageInputRef = useRef<HTMLInputElement>(null)
   const [audioFilename, setAudioFilename] = useState('')
   const [imageFilename, setImageFilename] = useState('')
-  const [title, setTitle] = useState('')
-  const [subtitle, setSubtitle] = useState('')
+  const [title, setTitle] = useAtom(songTitleAtom)
+  const [subtitle, setSubtitle] = useAtom(songSubtitleAtom)
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null)
-  const [lrc, setLrc] = useState('')
+  const [lrc, setLrc] = useAtom(songLrcAtom)
 
   const [audioDuration, setAudioDuration] = useState<number>(0)
   const [currentTime, setCurrentTime] = useState<number>(0)
