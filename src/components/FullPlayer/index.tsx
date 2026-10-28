@@ -155,7 +155,7 @@ export default function FullPlayer() {
             <Input
               placeholder='Yesterday Once More'
               value={title}
-              maxLength={100}
+              maxLength={500}
               allowClear
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -165,7 +165,7 @@ export default function FullPlayer() {
             <Input.TextArea
               placeholder='Unforgettable memories'
               rows={3}
-              maxLength={500}
+              maxLength={1000}
               showCount
               allowClear
               value={subtitle}
@@ -177,7 +177,7 @@ export default function FullPlayer() {
             <Input.TextArea
               placeholder={defaultLrc}
               rows={10}
-              maxLength={2000}
+              maxLength={8000}
               showCount
               allowClear
               value={lrc}
